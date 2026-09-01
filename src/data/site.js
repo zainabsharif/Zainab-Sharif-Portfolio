@@ -7,7 +7,7 @@ export const site = {
   phone: "+92-321-420-1113",
   linkedin: "https://linkedin.com/in/zainabsharif25",
   github: "https://github.com/zainabsharif",
-  resumeUrl: "/Zainab_Sharif-Resume.pdf",
+  resumeUrl: `${import.meta.env.BASE_URL}Zainab_Sharif-Resume.pdf`,
   summary:
     "Web developer who treats design as part of the function, not an add-on. Every site I build is themed around the brand behind it — visuals and structure working together, not just a backend underneath.",
   summaryResume:

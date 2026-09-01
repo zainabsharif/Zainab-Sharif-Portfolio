@@ -74,7 +74,7 @@ export const projects = [
     status: "Live",
     demoUrl: "https://zainabsharif.github.io/MoodFlix/",
     repoUrl: "https://github.com/zainabsharif/MoodFlix",
-    previewImage: "/project-previews/moodflix.png",
+    previewImage: `${import.meta.env.BASE_URL}project-previews/moodflix.png`,
     employable: false,
   },
   {
@@ -96,7 +96,7 @@ export const projects = [
     status: "Live",
     demoUrl: "https://zainabsharif.github.io/Pomodoro-Timer/",
     repoUrl: "https://github.com/zainabsharif/Pomodoro-Timer",
-    previewImage: "/project-previews/pomodoro-timer.png",
+    previewImage: `${import.meta.env.BASE_URL}project-previews/pomodoro-timer.png`,
     employable: false,
   },
   {
@@ -117,7 +117,7 @@ export const projects = [
     demoUrl: "https://zainabsharif.github.io/Delicate-Stones/",
     repoUrl: "https://github.com/zainabsharif/Delicate-Stones",
     client: "Delicate Stones (handmade beaded jewelry, @_delicatestones_)",
-    previewImage: "/project-previews/delicate-stones.png",
+    previewImage: `${import.meta.env.BASE_URL}project-previews/delicate-stones.png`,
     employable: false,
   },
 ];
