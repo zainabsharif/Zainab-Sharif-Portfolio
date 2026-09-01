@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
+import { TbVolume2, TbVolumeOff } from "react-icons/tb";
+import { useAmbientPad } from "../../hooks/useAmbientPad";
 
-const DURATION = 154; // seconds, display only — no real audio source is wired up
+const DURATION = 154; // seconds, visual loop length for the progress bar
 
 function formatTime(s) {
   const m = Math.floor(s / 60);
@@ -10,9 +12,9 @@ function formatTime(s) {
 
 export default function NowPlayingWidget() {
   const [collapsed, setCollapsed] = useState(false);
-  const [playing, setPlaying] = useState(false);
-  const [elapsed, setElapsed] = useState(38);
+  const [elapsed, setElapsed] = useState(0);
   const intervalRef = useRef(null);
+  const { playing, muted, toggle, toggleMute } = useAmbientPad();
 
   useEffect(() => {
     if (!playing) return;
@@ -35,7 +37,7 @@ export default function NowPlayingWidget() {
   }
 
   return (
-    <div className="fixed bottom-5 left-5 z-40 flex w-64 items-center gap-3 rounded-xl border border-border bg-bg-surface/90 p-3 shadow-lg backdrop-blur">
+    <div className="fixed bottom-5 left-5 z-40 flex w-72 items-center gap-2.5 rounded-xl border border-border bg-bg-surface/90 p-3 shadow-lg backdrop-blur">
       <div
         className={`h-10 w-10 shrink-0 rounded-md bg-gradient-to-br from-accent-primary via-accent-tertiary to-accent-secondary ${
           playing ? "animate-spin" : ""
@@ -56,7 +58,16 @@ export default function NowPlayingWidget() {
         </p>
       </div>
       <button
-        onClick={() => setPlaying((p) => !p)}
+        onClick={toggleMute}
+        className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full border transition-colors ${
+          muted ? "border-accent-primary text-accent-primary" : "border-border text-text-primary hover:border-accent-secondary"
+        }`}
+        aria-label={muted ? "Unmute" : "Mute"}
+      >
+        {muted ? <TbVolumeOff size={14} /> : <TbVolume2 size={14} />}
+      </button>
+      <button
+        onClick={toggle}
         className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-border text-text-primary hover:border-accent-secondary"
         aria-label={playing ? "Pause" : "Play"}
       >

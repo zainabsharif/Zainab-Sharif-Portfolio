@@ -7,23 +7,31 @@ import About from "./components/About";
 import CapabilityDiagram from "./components/CapabilityDiagram/CapabilityDiagram";
 import TechStackGrid from "./components/TechStack/TechStackGrid";
 import ProjectsGrid from "./components/Projects/ProjectsGrid";
-import Extracurricular from "./components/Extracurricular";
 import Contact from "./components/Contact/Contact";
 import Footer from "./components/Footer";
 import NowPlayingWidget from "./components/MusicPlayer/NowPlayingWidget";
+import AmbientBackground from "./components/Background/AmbientBackground";
+import StarField from "./components/Background/StarField";
+import ShootingStars from "./components/Background/ShootingStars";
+import Orb from "./components/Orb/Orb";
+import CursorTrail from "./components/CursorTrail/CursorTrail";
 
 function Sections() {
   const { recruiterMode } = useRecruiterMode();
   return (
     <>
+      <AmbientBackground />
+      <StarField />
+      <ShootingStars />
+      <CursorTrail />
+      {!recruiterMode && <Orb />}
       <Header />
       <main>
         <Hero />
         <About />
-        {!recruiterMode && <CapabilityDiagram />}
+        <CapabilityDiagram />
         <TechStackGrid />
         <ProjectsGrid />
-        <Extracurricular />
         <Contact />
       </main>
       <Footer />

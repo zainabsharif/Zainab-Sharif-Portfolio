@@ -1,61 +1,81 @@
+import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { skillGroups } from "../../data/skills";
-
-const container = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.08 } },
-};
-const item = {
-  hidden: { opacity: 0, y: 16 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-};
+import { techIcons } from "../../data/techIcons";
+import { useReducedMotion } from "../../hooks/useReducedMotion";
+import GlitchHeading from "../GlitchHeading";
 
 export default function TechStackGrid() {
+  const reducedMotion = useReducedMotion();
+
+  const skills = useMemo(() => {
+    const seen = new Set();
+    const flat = [];
+    skillGroups.forEach((group) => {
+      group.items.forEach((skill) => {
+        if (skill.startsWith("SFML")) return;
+        if (seen.has(skill)) return;
+        seen.add(skill);
+        flat.push(skill);
+      });
+    });
+    return flat;
+  }, []);
+
+  const tiles = reducedMotion ? skills : [...skills, ...skills];
+
   return (
     <section id="stack" className="mx-auto max-w-6xl px-6 py-28">
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.4 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <GlitchHeading>Tech Stack</GlitchHeading>
+      </motion.div>
       <motion.p
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.4 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="mb-3 font-mono text-xs tracking-[0.3em] text-accent-tertiary uppercase"
-      >
-        02 — Tech Stack
-      </motion.p>
-      <motion.h2
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.4 }}
+        viewport={{ once: false, amount: 0.4 }}
         transition={{ duration: 0.6, ease: "easeOut", delay: 0.08 }}
-        className="max-w-xl font-display text-3xl font-semibold text-text-primary sm:text-4xl"
+        className="neon-text mt-3 max-w-xl text-base text-white sm:text-lg"
       >
-        Tools I reach for.
-      </motion.h2>
+        Tools I reach for. Hover one to see what it is.
+      </motion.p>
 
-      <div className="mt-14 space-y-14">
-        {skillGroups.map((group) => (
-          <div key={group.id} id={group.id} className="scroll-mt-28">
-            <h3 className="mb-5 font-mono text-sm text-accent-secondary">{group.title}</h3>
-            <motion.div
-              variants={container}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.3 }}
-              className="grid gap-3"
-              style={{ gridTemplateColumns: "repeat(auto-fill, minmax(140px, 1fr))" }}
-            >
-              {group.items.map((skill) => (
-                <motion.div
-                  key={skill}
-                  variants={item}
-                  className="rounded-lg border border-border bg-bg-surface px-4 py-3 text-sm text-text-primary transition-colors hover:border-accent-primary hover:bg-bg-surface-hover hover:shadow-[0_0_20px_rgba(255,61,129,0.15)]"
-                >
+      <div className={`mt-16 ${reducedMotion ? "" : "-mx-6 overflow-hidden px-6"}`}>
+        <div
+          className={
+            reducedMotion
+              ? "flex flex-wrap gap-5"
+              : "flex w-max gap-5 animate-scroll-x hover:[animation-play-state:paused]"
+          }
+        >
+          {tiles.map((skill, i) => {
+            const entry = techIcons[skill];
+            const Icon = entry?.Icon;
+            const color = entry?.color ?? "#ff3d81";
+            return (
+              <div
+                key={`${skill}-${i}`}
+                style={{ "--tile-color": color }}
+                className="group flex shrink-0 items-center gap-3 rounded-2xl border border-border bg-bg-surface px-5 py-5 transition-all hover:-translate-y-1 hover:border-[var(--tile-color)] hover:bg-bg-surface-hover hover:shadow-[0_0_28px_var(--tile-color)]"
+              >
+                {Icon && (
+                  <Icon
+                    size={40}
+                    color={color}
+                    className="shrink-0 transition-transform duration-200 group-hover:scale-110"
+                  />
+                )}
+                <span className="max-w-0 overflow-hidden whitespace-nowrap font-mono text-sm text-text-primary opacity-0 transition-all duration-300 group-hover:max-w-[220px] group-hover:opacity-100">
                   {skill}
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        ))}
+                </span>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

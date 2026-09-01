@@ -37,7 +37,7 @@ export default function Hero() {
     <section
       id="top"
       ref={sectionRef}
-      className="relative flex min-h-screen items-center overflow-hidden bg-bg-primary"
+      className="relative flex min-h-screen items-center overflow-hidden"
     >
       <div className="absolute inset-0">
         <Scene scrollState={scrollState} />
@@ -52,8 +52,7 @@ export default function Hero() {
 
         {recruiterMode ? (
           <p className="mt-4 max-w-xl text-base text-text-secondary sm:text-lg">
-            Software Engineering student, FAST-NUCES — building full-stack and systems
-            projects in Python, C++, and Flask.
+            Building full-stack and systems projects.
           </p>
         ) : (
           <p className="mt-4 max-w-xl text-base text-text-secondary sm:text-lg">
@@ -65,7 +64,7 @@ export default function Hero() {
           <TerminalResumeButton prominent={recruiterMode} />
           <a
             href="#projects"
-            className="font-mono text-sm text-text-secondary transition-colors hover:text-accent-primary"
+            className="neon-text inline-flex items-center gap-1.5 rounded-md border border-accent-secondary bg-accent-secondary/10 px-4 py-2.5 font-mono text-sm text-accent-secondary transition-all hover:scale-105 hover:bg-accent-secondary/20 hover:shadow-[0_0_24px_rgba(61,255,208,0.5)]"
           >
             View projects ↓
           </a>

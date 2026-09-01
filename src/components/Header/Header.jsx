@@ -20,8 +20,8 @@ export default function Header() {
       }`}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <a href="#top" className="font-mono text-sm text-text-primary">
-          ZS<span className="text-accent-primary">/</span> System
+        <a href="#top" className="neon-text font-mono text-base font-bold text-accent-primary">
+          Zainab Sharif
         </a>
         <NumberedNav />
         <div className="flex items-center gap-4">

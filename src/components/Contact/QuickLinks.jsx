@@ -10,20 +10,22 @@ const links = [
 
 export default function QuickLinks() {
   return (
-    <ul className="flex flex-col gap-4">
+    <ul className="flex flex-col gap-3">
       {links.map((l) => (
-        <li key={l.label} className="flex flex-col border-b border-border pb-4">
-          <span className="font-mono text-[11px] tracking-widest text-text-secondary uppercase">
-            {l.label}
-          </span>
+        <li key={l.label}>
           <a
             href={l.href}
             download={l.download || undefined}
             target={l.href.startsWith("http") ? "_blank" : undefined}
             rel={l.href.startsWith("http") ? "noreferrer" : undefined}
-            className="mt-1 text-lg text-text-primary transition-colors hover:text-accent-primary"
+            className="group flex flex-col rounded-lg border border-transparent px-3 py-2.5 transition-all hover:-translate-y-0.5 hover:scale-[1.03] hover:border-accent-primary/50 hover:bg-bg-surface hover:shadow-[0_0_24px_rgba(255,61,129,0.35)]"
           >
-            {l.value}
+            <span className="font-mono text-[11px] tracking-widest text-text-secondary uppercase transition-colors group-hover:text-accent-primary">
+              {l.label}
+            </span>
+            <span className="mt-1 text-lg text-text-primary transition-colors group-hover:text-accent-primary">
+              {l.value}
+            </span>
           </a>
         </li>
       ))}

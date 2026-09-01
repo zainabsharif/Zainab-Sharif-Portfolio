@@ -1,7 +1,7 @@
 export const site = {
   name: "Zainab Sharif",
   role: "Web Developer",
-  tagline: "Web Developer · Software Engineering Student · Graphic Designer",
+  tagline: "Web Developer · Graphic Designer",
   location: "Lahore, Pakistan",
   email: "zainabsharif0505@gmail.com",
   phone: "+92-321-420-1113",
@@ -9,20 +9,7 @@ export const site = {
   github: "https://github.com/zainabsharif",
   resumeUrl: "/Zainab_Sharif-Resume.pdf",
   summary:
-    "I'm a Software Engineering student at FAST-NUCES, Lahore, building graphical applications and full-stack projects that pair clean object-oriented design with a strong visual sensibility. Alongside development, I design brand and UI assets in Canva and take on leadership roles in student design teams.",
+    "Web developer who treats design as part of the function, not an add-on. Every site I build is themed around the brand behind it — visuals and structure working together, not just a backend underneath.",
   summaryResume:
-    "Software Engineering student at FAST-NUCES. Demonstration of strong object-oriented design and software engineering principles through independently developed graphical applications. Combines technical development with a background in digital graphic design, team collaboration, and leadership through extracurricular roles.",
-  education: [
-    {
-      degree: "BS Software Engineering",
-      school: "FAST-NUCES, Lahore",
-      detail:
-        "Data Structures, Object Oriented Programming, Database Systems, Operating Systems, Computer Organization & Assembly Language, Software Requirements Engineering, Software Design and Architecture",
-    },
-    {
-      degree: "Intermediate",
-      school: "Punjab College, Lahore",
-      detail: null,
-    },
-  ],
+    "Web developer who treats design as part of the function, not an add-on. Every site I build is themed around the brand behind it — visuals and structure working together, not just a backend underneath.",
 };

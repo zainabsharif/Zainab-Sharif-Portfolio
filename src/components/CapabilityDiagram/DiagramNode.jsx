@@ -1,4 +1,4 @@
-export default function DiagramNode({ node, x, y, active, onEnter, onLeave, onSelect }) {
+export default function DiagramNode({ node, x, y, color, active, onEnter, onLeave, onSelect }) {
   return (
     <button
       onMouseEnter={onEnter}
@@ -12,15 +12,18 @@ export default function DiagramNode({ node, x, y, active, onEnter, onLeave, onSe
       }`}
     >
       <span
-        className={`flex h-14 w-14 items-center justify-center rounded-full border font-mono text-[10px] transition-colors sm:h-16 sm:w-16 ${
-          active
-            ? "border-accent-primary bg-accent-primary/15 text-accent-primary shadow-[0_0_24px_rgba(255,61,129,0.35)]"
-            : "border-border bg-bg-surface text-text-secondary"
-        }`}
+        style={{
+          background: `radial-gradient(circle at 32% 28%, rgba(255,255,255,0.65) 0%, transparent 38%), radial-gradient(circle at 50% 50%, ${color}dd 0%, ${color}66 65%, ${color}22 100%)`,
+          boxShadow: active
+            ? `0 0 28px ${color}, inset 0 0 12px rgba(255,255,255,0.25)`
+            : `0 4px 14px rgba(0,0,0,0.5), inset 0 0 8px rgba(255,255,255,0.12)`,
+        }}
+        className="h-14 w-14 rounded-full border border-white/10 transition-shadow sm:h-16 sm:w-16"
+      />
+      <span
+        style={{ color, textShadow: `0 0 6px ${color}, 0 0 16px ${color}` }}
+        className="text-xs leading-tight font-semibold"
       >
-        {node.id.slice(0, 4).toUpperCase()}
-      </span>
-      <span className={`text-xs leading-tight ${active ? "text-text-primary" : "text-text-secondary"}`}>
         {node.label}
       </span>
     </button>

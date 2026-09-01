@@ -15,7 +15,7 @@ export const skillGroups = [
     id: "stack-fullstack",
     nodeId: "fullstack",
     title: "Full-Stack",
-    items: ["Python", "Flask", "REST APIs", "HTML", "CSS", "JavaScript", "Three.js"],
+    items: ["Python", "Flask", "REST APIs", "HTML", "CSS", "JavaScript", "React", "Three.js"],
   },
   {
     id: "stack-data",
