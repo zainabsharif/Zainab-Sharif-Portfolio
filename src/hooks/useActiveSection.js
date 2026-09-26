@@ -7,22 +7,25 @@ export function useActiveSection(ids) {
     if (!ids.length) return;
 
     const updateActiveSection = () => {
-      const viewportCenter = window.innerHeight / 2;
+      const viewportMid = window.scrollY + window.innerHeight * 0.45;
       let bestId = ids[0];
       let bestDistance = Number.POSITIVE_INFINITY;
-      let bestVisible = -1;
 
       for (const id of ids) {
         const el = document.getElementById(id);
         if (!el) continue;
 
         const rect = el.getBoundingClientRect();
-        const center = rect.top + rect.height / 2;
-        const distance = Math.abs(center - viewportCenter);
-        const visibleHeight = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
+        const top = window.scrollY + rect.top;
+        const bottom = top + rect.height;
 
-        if (visibleHeight > bestVisible || (visibleHeight === bestVisible && distance < bestDistance)) {
-          bestVisible = visibleHeight;
+        if (viewportMid >= top && viewportMid < bottom) {
+          setActive(id);
+          return;
+        }
+
+        const distance = Math.min(Math.abs(top - viewportMid), Math.abs(bottom - viewportMid));
+        if (distance < bestDistance) {
           bestDistance = distance;
           bestId = id;
         }
