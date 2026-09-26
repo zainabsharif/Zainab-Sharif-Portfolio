@@ -19,7 +19,7 @@ export default function TerminalResumeButton({ prominent = false }) {
   return (
     <a
       href={site.resumeUrl}
-      download
+      download={site.resumeFileName}
       onMouseEnter={runSequence}
       onFocus={runSequence}
       onClick={runSequence}

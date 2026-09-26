@@ -5,7 +5,7 @@ const links = [
   { label: "Phone", value: site.phone, href: `tel:${site.phone.replace(/[^\d+]/g, "")}` },
   { label: "LinkedIn", value: "linkedin.com/in/zainabsharif25", href: site.linkedin },
   { label: "GitHub", value: "github.com/zainabsharif", href: site.github },
-  { label: "Resume", value: "Download PDF", href: site.resumeUrl, download: true },
+  { label: "Resume", value: "Download PDF", href: site.resumeUrl, download: site.resumeFileName },
 ];
 
 export default function QuickLinks() {
